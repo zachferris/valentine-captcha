@@ -58,24 +58,23 @@
 
   <div class="card">
     <h1>Happy Valentine’s Day, <span id="name">Babe</span> <span class="heart">♥</span></h1>
-    <p>You passed the boyfriend verification test 😌</p>
+    <p>You passed the favorite human test 😌</p>
     <div class="big" id="message">
       I love you. Thanks for being you — I’m the luckiest guy.
     </div>
-    <button class="btn" id="play">Tap for extra confetti + music</button>
+    <button class="btn" id="play">Tap for music + extra confetti</button>
   </div>
 
   <audio id="song" src="audio/song.mp3" preload="auto" loop></audio>
 
   <script>
-    // ✅ EDIT THESE:
-    const HER_NAME = "Hailey";
-    const LOVE_MESSAGE = "Will you be my Valentine?";
+    // ✅ EDIT THESE TWO LINES:
+    const HER_NAME = "YOUR_GIRLFRIEND_NAME";
+    const LOVE_MESSAGE = "Put your message here (short + real is best).";
 
     document.getElementById("name").textContent = HER_NAME;
     document.getElementById("message").textContent = LOVE_MESSAGE;
 
-    // Music (must be user-initiated sometimes)
     const song = document.getElementById("song");
     song.volume = 0.6;
 
@@ -87,7 +86,7 @@
     addEventListener("resize", resize); resize();
 
     const pieces = [];
-    function burst(count=160){
+    function burst(count=180){
       for (let i=0;i<count;i++){
         pieces.push({
           x: Math.random()*W,
@@ -115,7 +114,6 @@
         ctx.save();
         ctx.translate(p.x, p.y);
         ctx.rotate(p.rot);
-        // No fixed colors requested, so using simple white rectangles for a clean look
         ctx.globalAlpha = Math.max(0, Math.min(1, p.life/120));
         ctx.fillStyle = "rgba(255,255,255,0.9)";
         ctx.fillRect(-p.r/2, -p.r/2, p.r, p.r*1.4);
@@ -127,15 +125,14 @@
     }
     tick();
 
-    // Start with a small burst
-    burst(140);
+    burst(160);
 
     document.getElementById("play").addEventListener("click", () => {
-      burst(220);
+      burst(240);
       song.play().catch(()=>{});
     });
 
-    // Try autoplay once (often blocked; button above is the reliable start)
+    // Try autoplay once (often blocked)
     song.play().catch(()=>{});
   </script>
 </body>
